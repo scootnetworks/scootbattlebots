@@ -4,13 +4,14 @@ import robocode.*
 class Spintowin : Robot() {
     override fun run() {
         while (true) {
-            turnGunRight(10)
+            turnGunRight(10.0)
         }
     }
 
     override fun onScannedRobot(event: ScannedRobotEvent?) {
-        if (event.Distance < 100) {
-            Fire(50);
+        val botDistance = event?.distance ?: 10000.0
+        if (botDistance < 100.0) {
+            fire(50.0)
         }
     }
 }
