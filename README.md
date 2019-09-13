@@ -2,7 +2,9 @@
 Robocode Battle Bots, in Kotlin
 -----
 
-This repo is a robot battling game using [Robocode](https://robocode.sourceforge.io/).
+![](./img/robocode.png)
+
+This repo is a robot battling game using [Robocode](https://robocode.sourceforge.io/). Crush your opponents while learning Kotlin!
 
 Setup
 ---
@@ -35,6 +37,8 @@ Setup
 
 Running
 ----
+![](./img/battle.png)
+
 - Launch the Robocode game itself by running `<robocode install dir>/robocode.sh`
 - Options > Preferences > Development options tab
 - Click `Add` and navigate to the battlebots repo (*NOT* the Robocode installation directory) and add `out/production/scootbattlebots` to the classpath
