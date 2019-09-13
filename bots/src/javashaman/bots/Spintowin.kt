@@ -18,7 +18,8 @@ class Spintowin : Robot() {
         }
     }
 
-    override fun onScannedRobot(event: ScannedRobotEvent) {
+    override fun onScannedRobot(event: ScannedRobotEvent?) {
+        if (event == null) return
         val botDistance = event.distance
         if (botDistance < 400.0) {
             fire(400.0 / botDistance)
