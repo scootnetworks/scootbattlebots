@@ -20,10 +20,27 @@ Setup
 
 - Clone this repo (you can create an IntelliJ project directly from the GitHub link)
 
-- File > Project Structure > Modules on left side > Dependencies tab
-  - Delete the default module by clicking the minus sign
-  - Click the plus sign at the top to add a new module, Select `JVM`, and set the module name as 'bots'
-  - On the Dependencies tab, click plus sign at bottom left, choose JARs and add  `<robocode install dir>/libs/robocode.jar`
+- File > Project Structure
+    - Modules on left side
+      - Sources tab
+        - Delete the default sources folder
+        - Make sure the `bots/` folder is added as a source folder (You should see it listed in blue on the right) 
+
+      - Dependencies tab
+          - Make sure you have the `KotlinJavaRuntime` as a dependency
+          - Click plus sign at bottom left, choose JARs and add  `<robocode install dir>/libs/robocode.jar`
 
 - You should now be able to build the project
   - Build > Build Project or CMD + F9
+
+Running
+----
+- Launch the Robocode game itself by running `<robocode install dir>/robocode.sh`
+- Options > Preferences > Development options tab
+- Click `Add` and navigate to the battlebots repo (*NOT* the Robocode installation directory) and add `out/production/scootbattlebots` to the classpath
+- Battle > New or CMD+N to start a new battle. You should see yours and others' robots in the packages on the left. 
+
+Keep Going
+----
+
+These are the [API Docs](https://robocode.sourceforge.io/docs/robocode/), and here's a series of [tutorials](http://mark.random-article.com/weber/java/robocode/)
