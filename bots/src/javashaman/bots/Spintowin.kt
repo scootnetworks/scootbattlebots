@@ -6,7 +6,7 @@ class Spintowin : Robot() {
     override fun run() {
         while (true) {
             turnGunRight(5.0)
-            val randomValues = List(6) { Math.random()*20 }
+            val randomValues = List(7) { Math.random()*20 }
 
             ahead(randomValues[0])
             turnGunRight(randomValues[1])
