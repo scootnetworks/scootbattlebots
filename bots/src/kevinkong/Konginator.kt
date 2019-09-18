@@ -14,7 +14,7 @@ class Konginator : Robot() {
     var robotHitByBullet: String? = null
 
     override fun run() {
-        setAllColors(Color.CYAN)
+        setAllColors(Color.YELLOW)
         while(true) {
             scanForEnemy()
         }
