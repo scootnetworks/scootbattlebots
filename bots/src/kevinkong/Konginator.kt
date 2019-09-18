@@ -15,7 +15,7 @@ class Konginator : Robot() {
 
     override fun run() {
         setAllColors(Color.YELLOW)
-        while(true) {
+        while(!didFindEnemy) {
             scanForEnemy()
         }
     }
@@ -34,7 +34,6 @@ class Konginator : Robot() {
             } else {
                 val delta = 360 - this.heading
                 turnRight(delta)
-
             }
             ahead(150.0)
             turnGunLeft(360.0)
@@ -43,10 +42,31 @@ class Konginator : Robot() {
 
     }
 
+    private fun turnToHeading(heading: Double) {
+        if (this.heading <= 180) {
+            val oppSide = this.heading + 180.0
+            if (heading < oppSide) {
+                val delta = heading - this.heading
+                turnRight(delta)
+            } else {
+                val delta = (360.0 - heading)
+                turnLeft(delta)
+            }
+        } else {
+            val oppSide = this.heading - 180.0
+            if (heading < oppSide) {
+                val delta = 360.0 - this.heading + oppSide
+                turnRight(delta)
+            } else {
+                val delta = this.heading + heading
+                turnLeft(delta)
+            }
+        }
+    }
+
     private fun killEnemy(enemyHeading: Double, power: Double) {
         didFindEnemy = true
-//        val delta = enemyHeading - this.gunHeading
-//        turnGunRight(delta)
+        turnToHeading(enemyHeading)
         fire(power)
     }
 
@@ -65,7 +85,7 @@ class Konginator : Robot() {
         if (event.distance < 100) {
             power = 50.0
         }
-        killEnemy(event.heading, power)
+        fire(power)
     }
 
     override fun onBulletHit(event: BulletHitEvent?) {
@@ -74,18 +94,19 @@ class Konginator : Robot() {
 
     }
 
-//    override fun onHitRobot(event: HitRobotEvent?) {
-//        if (event == null) return
-//        super.onHitRobot(event)
-//        robotHitByBullet = event.name
-//        if (event.bearing > -90 && event.bearing <= 90) {
+    override fun onHitRobot(event: HitRobotEvent?) {
+        if (event == null) return
+        super.onHitRobot(event)
+        robotHitByBullet = event.name
+        if (event.bearing <= 180) {
 //            back(100.0)
-//            killEnemy(event.bearing, 50.0)
-//        } else {
+
+            killEnemy(event.bearing, 50.0)
+        } else {
 //            ahead(100.0)
-//            killEnemy(event.bearing, 50.0)
-//        }
-//    }
+            killEnemy(event.bearing, 50.0)
+        }
+    }
 
     override fun onHitWall(event: HitWallEvent?) {
         super.onHitWall(event)
